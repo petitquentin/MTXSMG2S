@@ -28,6 +28,8 @@ target_link_libraries(smg2s INTERFACE MPI::MPI_CXX)
 # Generate SMG2S executable
 add_executable(smg2s.exe smg2s.cpp)
 target_link_libraries(smg2s.exe PRIVATE smg2s )
+add_executable(generate_matrix.exe generate_matrix.cpp)
+target_link_libraries(generate_matrix.exe PRIVATE smg2s )
 
 install( TARGETS smg2s
   EXPORT smg2s-headers
@@ -49,7 +51,10 @@ install(EXPORT smg2s-headers
   )
 
 INSTALL(TARGETS smg2s.exe DESTINATION ${CMAKE_INSTALL_BINDIR})
+INSTALL(TARGETS generate_matrix.exe DESTINATION ${CMAKE_INSTALL_BINDIR})
 
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/generate_matrix.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 file(GLOB C_WRAPPERS "src/C/*.cc")
 add_library(smg2s2c ${C_WRAPPERS})
