@@ -97,6 +97,9 @@ install( FILES
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
   )
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/generate_matrix.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/generate_matrix_loc.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 ###tests
 add_subdirectory(tests)
 
